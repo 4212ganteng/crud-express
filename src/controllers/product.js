@@ -8,3 +8,15 @@ exports.findProduct = (req, res, next) => {
     },
   });
 };
+
+exports.createProduct = (req, res, next) => {
+  console.log(req.body);
+
+  const data = ({ name, title, price, img } = req.body);
+  res.json({
+    message: "Success create Product",
+    data: {
+      data,
+    },
+  });
+};
