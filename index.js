@@ -4,6 +4,7 @@ const port = 5000;
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
+const path = require("path");
 
 // multer config
 const upload = multer.diskStorage({
@@ -29,6 +30,9 @@ const fileFilter = (req, file, cb) => {
 };
 
 app.use(bodyParser.json()); //type json
+
+// akses image uploaded
+app.use("/images", express.static(path.join(__dirname, "images"))); //kalo ada uri/ images maka join kan dengan direktori images itu di simpan ex: d:/myapp/images/namafile.png
 
 app.use(multer({ storage: upload, fileFilter: fileFilter }).single("image")); //type nya singgle REQ.BODY('image')
 
